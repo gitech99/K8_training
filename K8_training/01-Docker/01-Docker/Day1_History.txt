@@ -1,0 +1,204 @@
+    1  git clone https://github.com/amitvashisttech/docker-kubernetes-Ericsson-02-Aug-2021.git
+    2  ls
+    3  cd docker-kubernetes-Ericsson-02-Aug-2021/
+    4  s
+    5  ls
+    6  cd 00-Setup/
+    7  ls
+    8  vim install-docker.sh 
+    9  ls
+   10  ./install-docker.sh 
+   11  docker version 
+   12  history 
+   13  ls
+   14  cat install-docker.sh 
+   15  apt-get install  docker-ce
+   16  apt-get update && apt-get install -y docker-ce=$(apt-cache madison docker-ce | grep 17.03 | head -1 | awk '{print $3}')
+   17  cd 
+   18  ls
+   19  docker version
+   20  docker images 
+   21  docker container ls 
+   22  docker run ubuntu echo "Welcome to docker demo."
+   23  docker images 
+   24  docker pull ubuntu:16.04
+   25  docker images 
+   26  docker ps 
+   27  docker container ls 
+   28  docker container ls -a
+   29  docker ps 
+   30  docker ps -a
+   31  docker run busybox echo "Hello World"
+   32  docker run busybox echo "Hello World - 2"
+   33  docker login 
+   34  docker logout 
+   35  docker pull amitvashist7/myapache
+   36  docker pull amitvashist7/myapache:v1 
+   37  docker pull amitvashist7/apache-ex4
+   38  docker login 
+   39  docker pull amitvashist7/apache-ex4
+   40  docker logout 
+   41  docker images 
+   42  docker run ubuntu cat /etc/os-release
+   43  docker run ubuntu:16.04 cat /etc/os-release
+   44  docker run ubuntu:21.04 cat /etc/os-release
+   45  docker run centos:7 cat /etc/os-release
+   46  docker ps 
+   47  docker ps -l
+   48  docker ps -l -q
+   49  docker inspect 902d3ca6153c
+   50  docker run -it ubuntu
+   51  docker ps 
+   52  docker run -it ubuntu
+   53  docker ps 
+   54  docker attach 67bb2ce5ce68
+   55  docker ps 
+   56  docker attach 67bb2ce5ce68
+   57  docker ps 
+   58  docker ps -a
+   59  docker attach 67bb2ce5ce68
+   60  docker start 67bb2ce5ce68
+   61  docker ps 
+   62  docker attach 67bb2ce5ce68
+   63  docker run -it --name test-1 ubuntu /bin/bash
+   64  docker ps 
+   65  docker kill test-1
+   66  docker ps -a
+   67  history 
+   68  docker run -it --name test-2 ubuntu /bin/bash
+   69  docker run -itd --name test-2 ubuntu /bin/bash
+   70  docker run -itd --name test-3 ubuntu /bin/bash
+   71  docker run -itd --name test-4 ubuntu /bin/bash
+   72  docker run -itd --name test-5 ubuntu /bin/bash
+   73  docker ps 
+   74  docker run -d amitvashist7/python-webapp:v1
+   75  docker ps 
+   76  docker inspect 35f4e6d5e784
+   77  curl 172.17.0.8:8081
+   78  curl 172.17.0.8:8081/info
+   79  docker ps 
+   80  curl 172.17.0.8:8081/info
+   81  docker ps 
+   82  docker ps -q
+   83  docker kill $(docker ps -q)
+   84  docker rm $(docker ps -q)
+   85  docker rm $(docker ps -aq)
+   86  docker ps -a 
+   87  ls
+   88  cd docker-kubernetes-Ericsson-02-Aug-2021/
+   89  ls
+   90  mkdir 01-Docker
+   91  ls
+   92  cd 01-Docker/
+   93  ls
+   94  history > Day1_History.txt
+   95  cd ..
+   96  ls
+   97  git config --global credential.helper 'cache --timeout=360000'
+   98  git add . ; git commit -m "01-Docker"
+   99  git push 
+  100  docker search https://github.com/amitvashisttech/docker-kubernetes-Ericsson-02-Aug-2021.git
+  101  docker search busybox 
+  102  ls
+  103  docker images
+  104  docker run -it ubuntu:21.04
+  105  docker run -it ubuntu:16.04
+  106  ls
+  107  cd 01-Docker/
+  108  ls
+  109  cd ..
+  110  ls
+  111  mkdir 02-Dockerfile/apache -p 
+  112  cd 02-Dockerfile/apache/
+  113  ls
+  114  vim Dockerfile
+  115  ls
+  116  docker build -t testapache:v1 
+  117  docker build -t testapache:v1  . 
+  118  docker images 
+  119  docker run -d --name apache-test-1 testapache:v1
+  120  docker ps 
+  121  docker inspect apache-test-1
+  122  curl 172.17.0.2
+  123  ls
+  124  cd ..
+  125  ls
+  126  cd ..
+  127  ls
+  128  cd 01-Docker/
+  129  ls
+  130  history > Day1_History.txt 
+  131  ls
+  132  cd ..
+  133  ls
+  134  git add . ; git commit -m "02-Dockerfile"
+  135  git pull 
+  136  ls
+  137  cat 01-Docker/Day1_History.txt 
+  138  git add . ; git commit -m "02-Dockerfile"
+  139  git add . ; git commit -m "02-Dockerfile" ; git push 
+  140  ls
+  141  cd 02-Dockerfile/
+  142  ls
+  143  cd apache/
+  144  ls
+  145  mkdir v1 v2 
+  146  ls
+  147  cp -rf Dockerfile v2/
+  148  mv Dockerfile v1/
+  149  ls
+  150  cd v2/
+  151  ls
+  152  vim index.html
+  153  ls
+  154  vim Dockerfile 
+  155  ls
+  156  docker build -t testapache:v2  . 
+  157  docker images 
+  158  docker ps 
+  159  docker run -d --name apache-test-2 testapache:v2
+  160  curl 172.17.0.2
+  161  curl 172.17.0.3
+  162  docker images 
+  163  docker ps 
+  164  ls
+  165  cd ..
+  166  ls
+  167  cp -rf v2 v3
+  168  ls
+  169  cd v3/
+  170  ls
+  171  vim index.html 
+  172  ls
+  173  vim Dockerfile 
+  174  ls
+  175  docker build -t testapache:v3  . 
+  176  docker run -d --name apache-test-3 testapache:v3
+  177  docker ps 
+  178  curl telnet://172.17.0.3:3306
+  179  curl -vvv telnet://172.17.0.3:3306
+  180  curl -vvv telnet://172.17.0.3:80
+  181  cd ..
+  182  ls
+  183  cp -rf v3 v4
+  184  ls
+  185  cd v4/
+  186  ls
+  187  vim index.html 
+  188  ls
+  189  vim Dockerfile 
+  190  docker build -t testapache:v4  . 
+  191  docker run -d --name apache-test-4 testapache:v4
+  192  docker ps 
+  193  curl -vvv telnet://172.17.0.5:80
+  194  curl -vvv telnet://172.17.0.5:8081
+  195  curl -vvv telnet://172.17.0.5:8080
+  196  curl -vvv 172.17.0.5:80
+  197  ls
+  198  cd ..
+  199  ls
+  200  cd ..
+  201  ls
+  202  cd ..
+  203  ls
+  204  history > 01-Docker/Day1_History.txt 
